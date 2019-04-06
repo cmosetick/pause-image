@@ -1,0 +1,28 @@
+---
+# Kubernetes deployment file with Alpine base
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug-alpine-base
+  # get your namespace right
+  namespace: default
+  labels:
+    app: debug-alpine-base
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug-alpine-base
+  template:
+    metadata:
+      labels:
+        app: debug-alpine-base
+    spec:
+      containers:
+      - name: debug-alpine-base
+        image: quay.io/cmosetick/pause-image:alpine
+        # command: ["/pause"]
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
