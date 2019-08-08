@@ -10,14 +10,23 @@
 
 FROM ubuntu:18.04 as builder
 WORKDIR /build
+
 RUN \
 apt-get update && \
 apt-get install -yq gcc
+
 COPY pause.c .
+
 RUN \
 gcc pause.c -o pause
 
 # make the final image now
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as final
+
 COPY --from=builder /build/pause /pause
+
+RUN \
+apt-get update && \
+apt-get install -yq inetutils-ping dnsutils nmap
+
 CMD ["/pause"]
