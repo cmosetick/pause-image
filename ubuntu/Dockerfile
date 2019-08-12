@@ -27,6 +27,6 @@ COPY --from=builder /build/pause /pause
 
 RUN \
 apt-get update && \
-apt-get install -yq inetutils-ping dnsutils nmap
+apt-get install -yq inetutils-ping net-tools dnsutils nmap
 
 CMD ["/pause"]
