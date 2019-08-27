@@ -27,6 +27,6 @@ COPY --from=builder /build/pause /pause
 
 RUN \
 apt-get update && \
-apt-get install -yq inetutils-ping net-tools dnsutils traceroute nmap curl
+apt-get install -yq inetutils-ping net-tools dnsutils traceroute nmap curl httpie
 
 CMD ["/pause"]
